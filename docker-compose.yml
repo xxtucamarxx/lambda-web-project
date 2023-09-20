@@ -5,7 +5,7 @@ services:
       ports:
         - 8000:80
       volumes:
-        - ./lambda_site:/var/www/lambda_site
+        - ./lambda_project:/var/www/lambda_project
         - ./apache_django.conf:/etc/apache2/sites-available/000-default.conf
       command: server
 
