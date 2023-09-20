@@ -1,0 +1,11 @@
+version: '3'
+services:
+    webserver:
+      build: .
+      ports:
+        - 8000:80
+      volumes:
+        - ./lambda_site:/var/www/lambda_site
+        - ./apache_django.conf:/etc/apache2/sites-available/000-default.conf
+      command: server
+
