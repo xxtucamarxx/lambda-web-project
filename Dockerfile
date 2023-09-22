@@ -30,4 +30,4 @@ COPY . /lambda_project/
 EXPOSE 80
 # Make directory for lambda_project
 RUN mkdir ${BASE_DIR}/${WEBSITE_NAME}
-ENTRYPOINT ["/bin/bash", "/var/www/startup.sh"]
+ENTRYPOINT ["/bin/bash"]
