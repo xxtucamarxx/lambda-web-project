@@ -30,7 +30,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # Copiar arquivos do projeto
 COPY requirements.txt /lambda_project
 RUN pip install -r requirements.txt
-COPY ./lambda_project/* /lambda_project/
+COPY . /lambda_project/
 
 # Expor a porta 80 no container
 EXPOSE 80
