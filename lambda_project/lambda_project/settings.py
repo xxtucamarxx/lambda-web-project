@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from sshtunnel import SSHTunnelForwarder
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,10 +75,22 @@ WSGI_APPLICATION = "lambda_project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+ssh_tunnel = SSHTunnelForwarder(
+    ('192.168.0.1', 5433),
+    ssh_username="tucamar",
+    ssh_password="naoesqueca",
+    remote_bind_address=('150.165.131.12', 9022),
+)
+ssh_tunnel.start()
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
+        "NAME": "vs",
+        "USER": "web",
+        "PASSWORD": "web",
+        "HOST": "150.165.131.12",
+        "PORT": ssh_tunnel.local_bind_port,
     }
 }
 
