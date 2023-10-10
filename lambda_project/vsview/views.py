@@ -1,5 +1,28 @@
+import json
 from django.views.generic import TemplateView
+from vsview.forms import InteractionQueryForm
+from vsview.models import PocketInteract
+from django.shortcuts import render
 # Create your views here.
+#
+
+def interactionQueryPageView(request):
+    if request.method == "POST":
+        form = InteractionQueryForm(request.POST)
+        if form.is_valid():
+            id_pdb = form.cleaned_data['id_pdb']
+            id_pocket = form.cleaned_data['id_pocket']
+            interactions = PocketInteract.objects.filter(id_pdb=id_pdb, id_pocket=id_pocket)
+        else:
+            interactions = None
+    else:
+        form = InteractionQueryForm()
+        interactions = None
+    context = {'form': form, 'interactions': interactions}
+
+    return render(request, 'interaction_query.html', context)
+    # template_name = 'interaction_query.html'
+
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -7,4 +30,4 @@ class HomePageView(TemplateView):
 
 class AboutPageView(TemplateView):
     template_name = 'about.html'
-    
+
