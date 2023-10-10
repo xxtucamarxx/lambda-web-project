@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.urls import reverse
 
 
 class PocketInteract(models.Model):
@@ -32,3 +33,10 @@ class PocketInteract(models.Model):
     class Meta:
         managed = False
         db_table = 'pocket_interact'
+
+    def __str__(self):
+        return f'{self.id_pdb}-{self.id_pocket}'
+
+    def get_absolute_url(self):
+        return reverse('interaction_detail', args=[str(self.pk)])
+        
