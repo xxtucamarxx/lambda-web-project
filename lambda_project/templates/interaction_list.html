@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Pesquisa de interações do banco de dados</h1>
+
+        {{ form.as_p }}
+        <div>
+            <input type="submit" value="OK">
+        </div>
+    </form>
+
+    <table>
+        <tr>
+          <th>Residuo</th>
+          <th>Ligacao</th>
+          <th>x</th>
+          <th>y</th>
+          <th>z</th>
+          <th>standart deviation x</th>
+          <th>standart deviation y</th>
+          <th>standart deviation z</th>
+        </tr>
+        {% for interaction in interactions %}
+            <tr>
+              <td>interaction.restype</td>
+              <td>interaction.type</td>
+              <td>interaction.x</td>
+              <td>interaction.y</td>
+              <td>interaction.z</td>
+              <td>interaction.sd_x</td>
+              <td>interaction.sd_y</td>
+              <td>interaction.sd_z</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+{% endblock content %}
