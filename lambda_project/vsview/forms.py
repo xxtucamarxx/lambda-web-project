@@ -6,6 +6,6 @@ from django import forms
 #         model = PocketInteract
 #         fields = ['id_pdb', 'id_pocket']
 
-class InteractionQueryForm(forms.Form):
+class PlipQueryForm(forms.Form):
     id_pdb = forms.CharField(label="Proteina", max_length=4)
     id_pocket = forms.CharField(label="Pocket", max_length=20)
