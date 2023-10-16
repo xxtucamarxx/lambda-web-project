@@ -77,7 +77,7 @@ WSGI_APPLICATION = "lambda_project.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # Connect to a server using the ssh keys. See the sshtunnel documentation for using password authentication
 
-"""ssh_tunnel = SSHTunnelForwarder(
+ssh_tunnel = SSHTunnelForwarder(
     ("150.165.131.12", 9022),
     ssh_username="tucamar",
     ssh_password="naoesqueca",
@@ -85,7 +85,7 @@ WSGI_APPLICATION = "lambda_project.wsgi.application"
 )
 ssh_tunnel.start()
 DATABASES = {
-    "teste": {
+    "default": {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'HOST': 'localhost',
         'PORT': ssh_tunnel.local_bind_port,
@@ -94,7 +94,8 @@ DATABASES = {
         'PASSWORD': 'web',
         'OPTIONS': {'options': '-c search_path=covid19'},
     }
-}"""
+}
+"""
 DATABASES = {
     "default": {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -106,7 +107,7 @@ DATABASES = {
         'OPTIONS': {'options': '-c search_path=covid19'},
     }
 }
-
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
