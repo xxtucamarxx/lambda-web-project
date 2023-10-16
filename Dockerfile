@@ -1,6 +1,6 @@
 FROM python:3.11
 
-ARG BASE_DIR=/var/www
+
 ARG WEBSITE_NAME=lambda_project
 ENV WEBSITE_NAME=${WEBSITE_NAME}
 
@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
     libffi-dev \
+    gdal-bin \
     vim \
     virtualenv \
     sudo \
@@ -19,18 +20,18 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Criar diretório para o projeto
-RUN mkdir /lambda_project/
-WORKDIR /lambda_project/
+RUN mkdir /var/www/lambda_project/
+WORKDIR /var/www/lambda_project/
 
-# Creates venv
-ENV VIRTUAL_ENV=/lambda_project/.venv
-RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 
 # Copiar arquivos do projeto
-COPY requirements.txt /lambda_project
+COPY requirements.txt .
+
+# Instalar dependências
 RUN pip install -r requirements.txt
-COPY . /lambda_project/
+
+COPY ./lambda_project .
 
 # Expor a porta 80 no container
 EXPOSE 80
