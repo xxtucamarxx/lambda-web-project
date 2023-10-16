@@ -84,10 +84,19 @@ ssh_tunnel = SSHTunnelForwarder(
 )
 ssh_tunnel.start()
 DATABASES = {
-    "default": {
+    "teste": {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'HOST': 'localhost',
         'PORT': ssh_tunnel.local_bind_port,
+        'NAME': 'vs',
+        'USER': 'web',
+        'PASSWORD': 'web',
+        'OPTIONS': {'options': '-c search_path=covid19'},
+    },
+    "default": {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'HOST': '192.168.0.1',
+        'PORT': 5433,
         'NAME': 'vs',
         'USER': 'web',
         'PASSWORD': 'web',
