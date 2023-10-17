@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 #
 
-def interactionQueryPageView(request):
+def plipListPageView(request):
     if request.method == "POST":
         form = PlipListForm(request.POST)
         if form.is_valid():

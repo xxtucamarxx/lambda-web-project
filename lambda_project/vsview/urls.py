@@ -1,10 +1,10 @@
 
 from django.urls import path
-from vsview.views import AboutPageView, HomePageView, interactionQueryPageView
+from vsview.views import AboutPageView, HomePageView, plipListPageView
 
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
-    path('plip', interactionQueryPageView, name='plip_list'),
+    path('plip', plipListPageView, name='plip_list'),
     path('about/', AboutPageView.as_view(), name='about')
 ]
