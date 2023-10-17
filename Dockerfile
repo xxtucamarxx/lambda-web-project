@@ -8,6 +8,7 @@ ENV WEBSITE_NAME=${WEBSITE_NAME}
 RUN apt-get update && apt-get install -y \
     apache2 \
     libapache2-mod-wsgi-py3 \
+    gdal-bin\
     build-essential \
     libssl-dev \
     libffi-dev \
