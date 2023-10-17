@@ -1,4 +1,3 @@
-import json
 from django.views.generic import TemplateView
 from vsview.forms import PlipListForm
 from vsview.models import PocketInteract
@@ -20,7 +19,7 @@ def plipListPageView(request):
         interactions = None
     context = {'form': form, 'interactions': interactions}
 
-    return render(request, 'interaction_query.html', context)
+    return render(request, 'plip_list.html', context)
     # template_name = 'interaction_query.html'
 
 
