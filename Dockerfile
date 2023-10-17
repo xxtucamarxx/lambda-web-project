@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.10
 
 ARG BASE_DIR=/var/www
 ARG WEBSITE_NAME=lambda_project

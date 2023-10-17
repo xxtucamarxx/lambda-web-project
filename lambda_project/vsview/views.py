@@ -1,6 +1,6 @@
 import json
 from django.views.generic import TemplateView
-from vsview.forms import InteractionQueryForm
+from vsview.forms import PlipListForm
 from vsview.models import PocketInteract
 from django.shortcuts import render
 # Create your views here.
@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 def interactionQueryPageView(request):
     if request.method == "POST":
-        form = InteractionQueryForm(request.POST)
+        form = PlipListForm(request.POST)
         if form.is_valid():
             id_pdb = form.cleaned_data['id_pdb']
             id_pocket = form.cleaned_data['id_pocket']
@@ -16,7 +16,7 @@ def interactionQueryPageView(request):
         else:
             interactions = None
     else:
-        form = InteractionQueryForm()
+        form = PlipListForm()
         interactions = None
     context = {'form': form, 'interactions': interactions}
 

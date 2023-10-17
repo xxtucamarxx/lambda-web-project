@@ -4,7 +4,7 @@ services:
       container_name: lambda_api
       build: .
       ports:
-        - 8000:80
+        - 80:80
       volumes:
         - ./lambda_project:/var/www/lambda_project
         - ./apache_django.conf:/etc/apache2/sites-available/000-default.conf
