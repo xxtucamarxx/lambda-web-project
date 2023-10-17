@@ -24,14 +24,14 @@
         </tr>
         {% for interaction in interactions %}
             <tr>
-              <td>interaction.restype</td>
-              <td>interaction.type</td>
-              <td>interaction.x</td>
-              <td>interaction.y</td>
-              <td>interaction.z</td>
-              <td>interaction.sd_x</td>
-              <td>interaction.sd_y</td>
-              <td>interaction.sd_z</td>
+                <td>{{ interaction.restype }}</td>
+                <td>{{ interaction.type }}</td>
+                <td>{{ interaction.x }}</td>
+                <td>{{ interaction.y }}</td>
+                <td>{{ interaction.z }}</td>
+                <td>{{ interaction.sd_x }}</td>
+                <td>{{ interaction.sd_y }}</td>
+                <td>{{ interaction.sd_z }}</td>
             </tr>
         {% endfor %}
     </table>
