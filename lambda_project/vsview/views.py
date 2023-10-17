@@ -20,7 +20,6 @@ def plipListPageView(request):
     context = {'form': form, 'interactions': interactions}
 
     return render(request, 'plip_list.html', context)
-    # template_name = 'interaction_query.html'
 
 
 class HomePageView(TemplateView):
