@@ -25,14 +25,20 @@
         </tr>
         {% for interaction in interactions %}
             <tr>
+                <td>{{ interaction.resnr }}</td>
+                <td>{{ interaction.reschain }}</td>
                 <td>{{ interaction.restype }}</td>
                 <td>{{ interaction.type }}</td>
+                <td>{{ interaction.protis }}</td>
+                <td>{{ interaction.quantidade }}</td>
+                <td>{{ interaction.min_dist }}</td>
+                <td>{{ interaction.max_dist }}</td>
+                <td>{{ interaction.avg_dist }}</td>
+                <td>{{ interaction.sd_dist }}</td>
                 <td>{{ interaction.x }}</td>
                 <td>{{ interaction.y }}</td>
                 <td>{{ interaction.z }}</td>
-                <td>{{ interaction.sd_x }}</td>
-                <td>{{ interaction.sd_y }}</td>
-                <td>{{ interaction.sd_z }}</td>
+                <td>{{ interaction.raio }}</td>
             </tr>
         {% endfor %}
     </table>
