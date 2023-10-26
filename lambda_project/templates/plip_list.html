@@ -2,39 +2,67 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Pesquisa de interações do banco de dados</h1>
+<h1>Pesquisa de interações do banco de dados</h1>
 
-    <form method='post'>
-        {% csrf_token %}
-        {{ form }}
-        <div>
-            <input type="submit" value="OK">
+<form method='post'>
+  {% csrf_token %}
+  {{ form }}
+  <div>
+    <input type="submit" value="OK">
+  </div>
+</form>
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Consulta banco PLIP</h5>
+          <p>Interações da proteina {{ id_pdb }}, {{ id_pocket }}</p>
+          <!-- <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable -->
+
+          <!-- Table with stripped rows -->
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th scope="col">resnr</th>
+                <th scope="col">reschain</th>
+                <th scope="col">restype</th>
+                <th scope="col">type</th>
+                <th scope="col">protis</th>
+                <th scope="col">quantidade</th>
+                <th scope="col">min_dist</th>
+                <th scope="col">max_dist</th>
+                <th scope="col">avg_dist</th>
+                <th scope="col">sd_dist</th>
+                <th scope="col">raio</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for interaction in interactions %}
+              <tr>
+                <td>{{ interaction.resnr }}</td>
+                <td>{{ interaction.reschain }}</td>
+                <td>{{ interaction.restype }}</td>
+                <td>{{ interaction.type }}</td>
+                <td>{{ interaction.protis }}</td>
+                <td>{{ interaction.quantidade|floatformat:3 }}</td>
+                <td>{{ interaction.min_dist|floatformat:3 }}</td>
+                <td>{{ interaction.max_dist|floatformat:3 }}</td>
+                <td>{{ interaction.avg_dist|floatformat:3 }}</td>
+                <td>{{ interaction.sd_dist|floatformat:3 }}</td>
+                <td>{{ interaction.raio|floatformat:3 }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
+
         </div>
-    </form>
+      </div>
 
-    <table>
-        <tr>
-          <th>Residuo</th>
-          <th>Ligacao</th>
-          <th>x</th>
-          <th>y</th>
-          <th>z</th>
-          <th>standart deviation x</th>
-          <th>standart deviation y</th>
-          <th>standart deviation z</th>
-        </tr>
-        {% for interaction in interactions %}
-            <tr>
-              <td>{{ interaction.restype }}</td>
-              <td>{{ interaction.type }}</td>
-              <td>{{ interaction.x }}</td>
-              <td>{{ interaction.y }}</td>
-              <td>{{ interaction.z }}</td>
-              <td>{{ interaction.sd_x }}</td>
-              <td>{{ interaction.sd_y }}</td>
-              <td>{{ interaction.sd_z }}</td>
-            </tr>
-        {% endfor %}
-    </table>
-    
+    </div>
+  </div>
+</section>
+
 {% endblock content %}

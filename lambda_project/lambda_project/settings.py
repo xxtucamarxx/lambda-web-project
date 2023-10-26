@@ -82,6 +82,10 @@ ssh_tunnel = SSHTunnelForwarder(
     ssh_username="tucamar",
     ssh_password="naoesqueca",
     remote_bind_address=('192.168.0.1', 5433),
+    # to work if tere
+    ssh_pkey = None,
+    ssh_private_key_password = None,
+    allow_agent=False
 )
 ssh_tunnel.start()
 DATABASES = {
@@ -95,6 +99,7 @@ DATABASES = {
         'OPTIONS': {'options': '-c search_path=covid19'},
     }
 }
+
 """
 DATABASES = {
     "default": {
@@ -143,8 +148,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/static/"
-STATIC_ROOT = ""
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIR = [
         os.path.join(BASE_DIR, 'static')
         ]
