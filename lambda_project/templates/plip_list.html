@@ -2,15 +2,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Pesquisa de interações do banco de dados</h1>
 
-<form method='post'>
-  {% csrf_token %}
-  {{ form }}
-  <div>
-    <input type="submit" value="OK">
-  </div>
-</form>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Pesquisa de interações do banco de dados</h6>
+        <form class="row g-3" method='post'>
+            {% csrf_token %}
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" maxlength="5" name="pdb" class="form-control" id="id_pdb" placeholder="Proteína">
+                    <label for="id_pdb">Proteína</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="number" name="pocket" class="form-control" id="id_pocket" placeholder="Pocket">
+                    <label for="id_pocket">Pocket</label>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+                <button type="reset" class="btn btn-secondary">Limpar</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <section class="section">
   <div class="row">
@@ -19,7 +35,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Consulta banco PLIP</h5>
-          <p>Interações da proteina {{ id_pdb }}, {{ id_pocket }}</p>
+          <p>Interações da proteina <b>{{ id_pdb }}</b>, pocket <b>{{ id_pocket }}</b></p>
           <!-- <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable -->
 
           <!-- Table with stripped rows -->
