@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-l6eo##w%bcm(m05!0=@4h&1d)s^qu8(-v7%x7o4oa)!$0x-b#(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.15.10', '150.165.131.12', '150.165.231.10', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.15.10', '150.165.131.12', '150.165.231.10', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -76,6 +76,7 @@ WSGI_APPLICATION = "lambda_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # Connect to a server using the ssh keys. See the sshtunnel documentation for using password authentication
+<<<<<<< HEAD
 # ssh_tunnel = SSHTunnelForwarder(
 #     ("150.165.131.12", 9022),
 #     ssh_username="tucamar",
@@ -141,8 +142,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/static/"
-STATIC_ROOT = ""
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIR = [
         os.path.join(BASE_DIR, 'static')
         ]

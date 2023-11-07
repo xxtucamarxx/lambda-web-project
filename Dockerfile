@@ -1,6 +1,6 @@
 FROM python:3.11
 
-ARG BASE_DIR=/var/www
+
 ARG WEBSITE_NAME=lambda_project
 ENV WEBSITE_NAME=${WEBSITE_NAME}
 
@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
     libffi-dev \
+    gdal-bin \
     vim \
     virtualenv \
     sudo \
