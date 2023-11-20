@@ -76,7 +76,6 @@ WSGI_APPLICATION = "lambda_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # Connect to a server using the ssh keys. See the sshtunnel documentation for using password authentication
-<<<<<<< HEAD
 # ssh_tunnel = SSHTunnelForwarder(
 #     ("150.165.131.12", 9022),
 #     ssh_username="tucamar",
