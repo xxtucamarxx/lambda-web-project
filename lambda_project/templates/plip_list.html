@@ -44,13 +44,15 @@
                 <thead>
                   <tr>
                     <th scope="col">resnr</th>
-                    <th scope="col">restype</th>
                     <th scope="col">type</th>
                     <th scope="col">protis</th>
                     <th scope="col">quantidade</th>
                     <th scope="col">min_dist</th>
                     <th scope="col">max_dist</th>
                     <th scope="col">avg_dist</th>
+                    <th scope="col">x</th>
+                    <th scope="col">y</th>
+                    <th scope="col">z</th>
                     <th scope="col">sd_dist</th>
                     <th scope="col">raio</th>
                   </tr>
@@ -58,16 +60,18 @@
                 <tbody>
                   {% for interaction in interactions %}
                   <tr>
-                    <td>{{ interaction.resnr }}{{ interaction.reschain }}</td>
-                    <td>{{ interaction.restype }}</td>
+                    <td>{{ interaction.resnr }}{{ interaction.reschain }}{{ interaction.restype }}</td>
                     <td>{{ interaction.type }}</td>
                     <td>{{ interaction.protis }}</td>
-                    <td>{{ interaction.quantidade|floatformat:3 }}</td>
-                    <td>{{ interaction.min_dist|floatformat:3 }}</td>
-                    <td>{{ interaction.max_dist|floatformat:3 }}</td>
-                    <td>{{ interaction.avg_dist|floatformat:3 }}</td>
-                    <td>{{ interaction.sd_dist|floatformat:3 }}</td>
-                    <td>{{ interaction.raio|floatformat:3 }}</td>
+                    <td align="right">{{ interaction.quantidade }}</td>
+                    <td align="right">{{ interaction.min_dist|floatformat:3 }}</td>
+                    <td align="right">{{ interaction.max_dist|floatformat:3 }}</td>
+                    <td align="right">{{ interaction.avg_dist|floatformat:3 }}</td>
+                    <td align="right">{{ interaction.x|floatformat:3 }}</td>
+                    <td align="right">{{ interaction.y|floatformat:3 }}</td>
+                    <td align="right">{{ interaction.z|floatformat:3 }}</td>
+                    <td align="right">{{ interaction.sd_dist|floatformat:3 }}</td>
+                    <td align="right">{{ interaction.raio|floatformat:3 }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
