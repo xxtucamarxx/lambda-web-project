@@ -28,6 +28,7 @@
     </div>
 </div>
 
+{% if id_pdb %}
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
@@ -36,12 +37,11 @@
                     <h5 class="card-title">Consulta banco PLIP</h5>
                     <div>
                         <p>
-                        Interações da proteina <b>{{ id_pdb }}</b>, pocket <b>{{ id_pocket }}</b>
+                        Interações da proteina <a target="_blank" rel="noopener noreferrer" href="https://www.rcsb.org/structure/{{ id_pdb }}" ><b>{{ id_pdb }}</b></a>, pocket <b>{{ id_pocket }}</b>
                         </p>
                         <button id="copy_button" data-residue="{{ residue }}" class="btn btn-primary" onclick="copyText()">Copiar Residuos</button>
                     </div>
-
-
+                    <div></div>
 
                     <!-- <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable -->
 
@@ -92,6 +92,8 @@
         </div>
     </div>
 </section>
+{% endif %}
+
 
 {% endblock content %}
 

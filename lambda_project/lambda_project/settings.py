@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-# from sshtunnel import SSHTunnelForwarder
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "debug_toolbar", # debugging DB
     "vsview.apps.VsviewConfig",
+    "covid.apps.CovidConfig"
 ]
 
 MIDDLEWARE = [
@@ -76,36 +77,38 @@ WSGI_APPLICATION = "lambda_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # Connect to a server using the ssh keys. See the sshtunnel documentation for using password authentication
-# ssh_tunnel = SSHTunnelForwarder(
-#     ("150.165.131.12", 9022),
-#     ssh_username="tucamar",
-#     ssh_password="naoesqueca",
-#     remote_bind_address=('192.168.0.1', 5433),
-# )
-# ssh_tunnel.start()
-# DATABASES = {
-#     "default": {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'HOST': 'localhost',
-#         'PORT': ssh_tunnel.local_bind_port,
-#         'NAME': 'vs',
-#         'USER': 'web',
-#         'PASSWORD': 'web',
-#         'OPTIONS': {'options': '-c search_path=covid19'},
-#     }
-# }
 
+from sshtunnel import SSHTunnelForwarder
+ssh_tunnel = SSHTunnelForwarder(
+    ("150.165.131.12", 9022),
+    ssh_username="tucamar",
+    ssh_password="naoesqueca",
+    remote_bind_address=('192.168.0.1', 5433),
+)
+ssh_tunnel.start()
 DATABASES = {
     "default": {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'HOST': '192.168.0.1',
-        'PORT': 5433,
+        'HOST': 'localhost',
+        'PORT': ssh_tunnel.local_bind_port,
         'NAME': 'vs',
         'USER': 'web',
         'PASSWORD': 'web',
         'OPTIONS': {'options': '-c search_path=covid19'},
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'HOST': '192.168.0.1',
+#         'PORT': 5433,
+#         'NAME': 'vs',
+#         'USER': 'web',
+#         'PASSWORD': 'web',  
+#         'OPTIONS': {'options': '-c search_path=covid19'},
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
