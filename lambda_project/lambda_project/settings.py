@@ -81,6 +81,7 @@ WSGI_APPLICATION = "lambda_project.wsgi.application"
 from sshtunnel import SSHTunnelForwarder
 ssh_tunnel = SSHTunnelForwarder(
     ("150.165.131.12", 9022),
+    allow_agent=False,
     ssh_username="tucamar",
     ssh_password="naoesqueca",
     remote_bind_address=('192.168.0.1', 5433),
