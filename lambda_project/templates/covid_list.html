@@ -5,34 +5,38 @@
             <h5 class="card-title">
                 Pesquisa de interações covid
             </h6>
-            <form class="row g-3" method='post'>
+            <form class="row g-3" method='post' autocomplete="off" >
                 {% csrf_token %}
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="text"
-                               maxlength="5"
+                        <input name="protein"
+                               type="text"
                                class="form-control"
                                id="nm_protein"
                                list="protein_list"
                                placeholder="Proteína">
                         <datalist id="protein_list">
-                            {% for farmaco in farmacos %}<option>{{ farmaco.id_pdb__nm_protein }}</option>{% endfor %}
+                            {% for protein in proteins_list %}<option>{{ protein.id_pdb__nm_protein }}</option>{% endfor %}
                         </datalist>
                         <label for="nm_protein">Proteína</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="id_pdb" placeholder="PDB">
+                        <input name="pdb" type="text" class="form-control" id="id_pdb" list="pdb_list" placeholder="PDB">
                         <label for="id_pdb">PDB</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="text"
+                        <input name="farmaco" type="text"
                                class="form-control"
                                id="nm_farmaco"
+                               list="farmaco_list"
                                placeholder="Fármaco">
+                        <datalist id="farmaco_list">
+                            {% for farmaco in farmacos_list %}<option>{{ farmaco.nm_farmaco }}</option>{% endfor %}
+                        </datalist>
                         <label for="nm_farmaco">Fármaco</label>
                     </div>
                 </div>
