@@ -2,42 +2,28 @@
 {% block content %}
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">
-                Pesquisa de interações covid
-            </h6>
-            <form class="row g-3" method='post' autocomplete="off" >
+            <h5 class="card-title">Pesquisa de interações do banco de dados</h5>
+            <form class="row g-3" method='post'>
                 {% csrf_token %}
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-floating">
-                        <input name="protein"
-                               type="text"
+                        <input type="text"
+                               maxlength="5"
+                               name="pdb"
                                class="form-control"
-                               id="nm_protein"
-                               list="protein_list"
+                               id="id_pdb"
                                placeholder="Proteína">
-                        <datalist id="protein_list">
-                            {% for protein in proteins_list %}<option>{{ protein.id_pdb__nm_protein }}</option>{% endfor %}
-                        </datalist>
-                        <label for="nm_protein">Proteína</label>
+                        <label for="id_pdb">Proteína</label>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-floating">
-                        <input name="pdb" type="text" class="form-control" id="id_pdb" list="pdb_list" placeholder="PDB">
-                        <label for="id_pdb">PDB</label>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input name="farmaco" type="text"
+                        <input type="number"
+                               name="pocket"
                                class="form-control"
-                               id="nm_farmaco"
-                               list="farmaco_list"
-                               placeholder="Fármaco">
-                        <datalist id="farmaco_list">
-                            {% for farmaco in farmacos_list %}<option>{{ farmaco.nm_farmaco }}</option>{% endfor %}
-                        </datalist>
-                        <label for="nm_farmaco">Fármaco</label>
+                               id="id_pocket"
+                               placeholder="Pocket">
+                        <label for="id_pocket">Pocket</label>
                     </div>
                 </div>
                 <div class="text-center">
@@ -62,19 +48,23 @@
                                     <tr>
                                         <th scope="col">Proteína</th>
                                         <th scope="col">PDB</th>
-                                        <th scope="col">Pocket</th>
                                         <th scope="col">Fármaco</th>
+                                        <th scope="col">Pocket</th>
                                         <th scope="col">Análogo</th>
                                         <th scope="col">Score</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for complex in complexes %}
+                                    {% for complex in complexes|slice:":20" %}
                                         <tr>
-                                            <td>{{ complex.nm_protein }}</td>
+                                            <td>{{ protein }}</td>
                                             <td>{{ complex.id_pdb }}</td>
+                                            {% if farmaco %}
+                                                <td>{{ farmaco }}</td>
+                                            {% else %}
+                                                <td>{{ complex.nm_farmaco }}</td>
+                                            {% endif %}
                                             <td>{{ complex.id_pocket }}</td>
-                                            <td>{{ complex.nm_farmaco }}</td>
                                             <td>{{ complex.nm_analogo }}</td>
                                             <td>{{ complex.vl_score }}</td>
                                         </tr>
